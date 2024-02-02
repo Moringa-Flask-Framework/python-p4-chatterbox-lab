@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -5,8 +6,10 @@ from flask_migrate import Migrate
 from models import db, Message
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.configp['SQLALCHEMY_DATABASE_URI']= os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#postgres://flask_app_bgg0_user:1N1uqyqSwUrS9DkKxJ0kc2ef2qVOMnIx@dpg-cmu8m4uv3ddc738fpfl0-a.ohio-postgres.render.com/flask_app_bgg0
 app.json.compact = False
 
 CORS(app)
